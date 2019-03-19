@@ -24,6 +24,7 @@ driver.get("https://www.twitch.tv/directory/game/League%20of%20Legends")
 start_text = '//*[@id="root"]/div/div[2]/div/main/div/div[3]/div/div/div/div[3]/div[1]/div/div[1]/p'
 element = WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, start_text)))
 driver.find_element_by_xpath(start_text).click()
+
 i = 1
 while i < 5:
     url_xpath = '//*[@id="root"]/div/div[2]/div/main/div/div[3]/div/div/div/div[4]/div/div[1]/div[2]/div[' + str(
@@ -31,14 +32,13 @@ while i < 5:
 
     title_xpath = '//*[@id="root"]/div/div[2]/div/main/div/div[3]/div/div/div/div[4]/div/div[1]/div[2]/div[' + str(
         i) + ']/div/div/div/div[2]/div[2]/div[1]/a/h3'
-    tt = '//*[@id="root"]/div/div[2]/div/main/div/div[3]/div/div/div/div[4]/div/div[1]/div[2]/div[1]/div/div/div/div[2]/div[2]/div[1]/a/h3'
     try:
 
         ActionChains(driver).send_keys(Keys.PAGE_DOWN).perform()
         element = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, title_xpath)))
         d = driver.find_element_by_xpath(title_xpath)
         e = driver.find_element_by_xpath(url_xpath)
-        print('%s' % (i),d.get_attribute('title'),e.get_attribute("href"))
+        print('%s' % (i), d.get_attribute('title'), e.get_attribute("href"))
         i += 1
 
 
